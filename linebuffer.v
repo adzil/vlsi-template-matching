@@ -32,10 +32,13 @@ module linebuffer (d_in, clk, rst, ena, d_out);
 
     /* Synchronous machine realization */
     always @ (posedge clk or negedge rst) begin
-        if (!rst) begin
-            buff = {buff[1:307199], d_in};
+        if (rst) begin
+            if (ena)
+                buff <= {buff[1:307199], d_in};
+            else
+                buff <= buff;
         end
         else begin
-            buff = 307200'd0;
+            buff <= 307200'd0;
         end
     end

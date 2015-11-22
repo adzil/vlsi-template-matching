@@ -14,16 +14,13 @@ module sad (d_in, d_out);
     input clk;
     input rst;
     input ena;
-    // Data output to output comparator module
-    // The output is ranging from (0/x0 to 4000/xFA0 ~ 12bit)
-    output [11:0] d_out;
+    // SAD raw output, should be connected to the linecounter module
+    output [3999:0] d_out;
 
     /* Register/wire declarations */
     reg [0:3999] d_template;
-    wire [0:3999] d_sad;
+    wire [0:3999] d_out;
 
-    assign d_sad = d_in ^ d_template;
-
-    linecounter linecounter_i(d_sad, d_out);
+    assign d_out = d_in ^ d_template;
 
 endmodule

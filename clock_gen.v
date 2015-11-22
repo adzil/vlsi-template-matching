@@ -1,6 +1,6 @@
 /*  # Clock generator - Module
  *
- *  The clock generator module will clock the system at 100MHz (10ns). This
+ *  The clock generator module will clock the system on simulation. This
  *  file should used on ModelSim functional simulation only and **must not** be
  *  used on FPGA implementation.
  */
@@ -14,7 +14,7 @@ module clock_gen(clk);
 
     /* Clock generator */
     always begin
-        #5000
+        #25
         // Invert clock pin value
         clk <= ~clk;
     end
