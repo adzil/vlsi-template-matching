@@ -14,9 +14,9 @@ module sad (d_in, d_out);
     output [3999:0] d_out;
 
     /* Register/wire declarations */
-    reg [0:3999] d_template;
+    reg [0:3999] d_template[0:0];
     wire [0:3999] d_out;
 
-    assign d_out = d_in ^ d_template;
+    assign d_out = d_in ^ d_template[0];
 
 endmodule

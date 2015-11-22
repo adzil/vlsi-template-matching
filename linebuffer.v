@@ -22,6 +22,7 @@ module linebuffer (d_in, clk, rst, ena, d_out);
     reg [0:3999] d_out;
     // Buffer register
     reg [0:307199] buff;
+    reg d_buff [0:307199];
 
     /* Combinational circuit for line buffer output */
     integer i;
@@ -31,16 +32,24 @@ module linebuffer (d_in, clk, rst, ena, d_out);
     end
 
     /* Synchronous machine realization */
+    integer j;
     always @ (posedge clk or negedge rst) begin
         if (rst) begin
-            if (ena)
+            if (!ena)
                 buff <= {buff[1:307199], d_in};
             else
                 buff <= buff;
         end
         else begin
-            buff <= 307200'd0;
+            for (j = 0; j < 307200; j = j + 1)
+                buff[j] <= 1'd0;
         end
+    end
+
+    integer k;
+    always @ (*) begin
+        for (k = 0; k < 307200; k = k + 1)
+            buff[k] = d_buff[k];
     end
 
 endmodule
