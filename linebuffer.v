@@ -42,3 +42,5 @@ module linebuffer (d_in, clk, rst, ena, d_out);
             buff <= 307200'd0;
         end
     end
+
+endmodule

@@ -10,10 +10,6 @@ module sad (d_in, d_out);
     /* Input/output declarations */
     // Data input from linebuffer module
     input [0:3999] d_in;
-    // Control line inputs
-    input clk;
-    input rst;
-    input ena;
     // SAD raw output, should be connected to the linecounter module
     output [3999:0] d_out;
 
